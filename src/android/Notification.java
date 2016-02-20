@@ -135,8 +135,8 @@ public class Notification extends CordovaPlugin {
             notification.play();
            
         }
-
-        if (count == 2) {
+        else
+        {
             notification.stop();
         }
 }
