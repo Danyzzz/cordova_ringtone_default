@@ -134,14 +134,6 @@ public class Notification extends CordovaPlugin {
     if (notification != null) {
         if (count == 1) {
             notification.play();
-            long timeout = 4000;
-            while (notification.isPlaying() && (timeout > 0)) {
-                timeout = timeout - 100;
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                }
-            }
         }
         else{
             notification.stop();
