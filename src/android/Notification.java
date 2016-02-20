@@ -151,7 +151,8 @@ public class Notification extends CordovaPlugin {
                 }
                 else
                 {
-
+                    Uri ringtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+                    Ringtone notification = RingtoneManager.getRingtone(cordova.getActivity().getBaseContext(), ringtone); 
                     // If phone is not set to silent mode
                     if (notification != null) {
                         for (long i = 0; i < count; ++i) {
