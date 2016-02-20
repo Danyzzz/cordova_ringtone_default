@@ -129,11 +129,11 @@ public class Notification extends CordovaPlugin {
     public void beep(final long count) {
         cordova.getThreadPool().execute(new Runnable() {
             public void run() {
-
+                
+                Uri ringtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+                Ringtone notification = RingtoneManager.getRingtone(cordova.getActivity().getBaseContext(), ringtone); 
+                
                 if (count == 1) {
-                    Uri ringtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-                    Ringtone notification = RingtoneManager.getRingtone(cordova.getActivity().getBaseContext(), ringtone); 
-                    // If phone is not set to silent mode
                     if (notification != null) {
                         for (long i = 0; i < count; ++i) {
                             notification.play();
