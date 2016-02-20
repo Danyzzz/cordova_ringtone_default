@@ -127,19 +127,15 @@ public class Notification extends CordovaPlugin {
      * @param count     Number of times to play notification
      */
     public void beep(final long count) {
-        
-                Ringtone notification;
-                Uri ringtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-                notification = RingtoneManager.getRingtone(cordova.getActivity().getBaseContext(), ringtone);
-                notification.stopPreviousRingtone();
-
-                if (count == 1) { 
-                    notification.play();
-                }
-                if (count == 2) {
-                    notification.stop();
-                }
-          
+                
+                Ringtone defaultRingtone = RingtoneManager.getRingtone(cordova.getActivity().getBaseContext(), Settings.System.DEFAULT_RINGTONE_URI);
+                
+                //fetch current Ringtone
+                Uri currentRintoneUri = RingtoneManager.getActualDefaultRingtoneUri(cordova.getActivity().getBaseContext(), RingtoneManager.TYPE_RINGTONE);
+                Ringtone currentRingtone = RingtoneManager.getRingtone(cordova.getActivity().getBaseContext(), currentRintoneUri);
+                
+                //play current Ringtone
+                currentRingtone.play();
     }
 
     /**
