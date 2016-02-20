@@ -127,29 +127,18 @@ public class Notification extends CordovaPlugin {
      * @param count     Number of times to play notification
      */
     public void beep(long count) {
-    Uri ringtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-    Ringtone notification = RingtoneManager.getRingtone(this.cordova.getActivity().getBaseContext(), ringtone);
-
-    // If phone is not set to silent mode
-    if (notification != null) {
 
         if (count == 1) {
+            Uri ringtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+            Ringtone notification = RingtoneManager.getRingtone(this.cordova.getActivity().getBaseContext(), ringtone);
+           
             notification.play();
-            long timeout = 1000;
-            while (notification.isPlaying() && (timeout > 0)) {
-                timeout = timeout - 100;
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                }
-            }
+           
         }
 
         if (count == 2) {
-           if (notification.isPlaying())
-           notification.stop();
+            notification.stop();
         }
-    }
 }
 
     /**
