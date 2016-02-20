@@ -131,7 +131,7 @@ public class Notification extends CordovaPlugin {
             public void run() {
 
                 if (count == 1) {
-                    ringtone.stop();
+                    Ringtone.stop();
                 }
                 else
                 {
