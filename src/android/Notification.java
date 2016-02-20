@@ -130,11 +130,11 @@ public class Notification extends CordovaPlugin {
         
                 Uri ringtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
                 Ringtone notification = RingtoneManager.getRingtone(cordova.getActivity().getBaseContext(), ringtone); 
-                Ringtone.stopPreviousRingtone();
+                
                 if (count == 1) { 
                     notification.play();
                 }
-                if (count == 2) {
+                if (count == 2) {notification.stopPreviousRingtone();
                     notification.stop();   
                 }
           
