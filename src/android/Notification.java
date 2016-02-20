@@ -32,7 +32,6 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -129,14 +128,14 @@ public class Notification extends CordovaPlugin {
      */
     public void beep(final long count) {
         
+                Ringtone ringtone;
                 Uri ringtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-                MediaPlayer mediaPlayer = MediaPlayer.create(cordova.getActivity().getBaseContext(), ringtone);
 
                 if (count == 1) { 
-                    mediaPlayer.start();
+                    ringtone.play();    
                 }
                 if (count == 2) {
-                   mediaPlayer.stop();
+                   ringtone.stop();
                 }
           
     }
