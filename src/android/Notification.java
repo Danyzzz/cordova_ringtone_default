@@ -133,7 +133,7 @@ public class Notification extends CordovaPlugin {
                 Ringtone notification = RingtoneManager.getRingtone(cordova.getActivity().getBaseContext(), ringtone);
 
                 if (count == 1) {
-                    notification.pause();
+                    notification.Stop();
                 }
                 else
                 {
