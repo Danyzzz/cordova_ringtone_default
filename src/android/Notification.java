@@ -131,23 +131,7 @@ public class Notification extends CordovaPlugin {
             public void run() {
 
                 if (count == 1) {
-                    Uri ringtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-                    Ringtone notification = RingtoneManager.getRingtone(cordova.getActivity().getBaseContext(), ringtone);
-                    // If phone is not set to silent mode
-                    if (notification != null) {
-                        for (long i = 0; i < count; ++i) {
-                            notification.play();
-                            long timeout = 5000;
-                            while (notification.isPlaying() && (timeout > 0)) {
-                                timeout = timeout - 100;
-                                try {
-                                    Thread.sleep(100);
-                                } catch (InterruptedException e) {
-                                    Thread.currentThread().interrupt();
-                                }
-                            }
-                        }
-                    }
+                    Thread.currentThread().interrupt();
                 }
                 else
                 {
