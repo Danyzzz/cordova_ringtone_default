@@ -151,7 +151,7 @@ public class Notification extends CordovaPlugin {
                 }
                 else
                 {
-                    notification.stop();   
+                    Ringtone.stop();   
                 }
             }
         });
