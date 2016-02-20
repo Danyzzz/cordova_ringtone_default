@@ -132,9 +132,9 @@ public class Notification extends CordovaPlugin {
 
     // If phone is not set to silent mode
     if (notification != null) {
-        for (long i = 0; i < count; ++i) {
+        if (count == 1) {
             notification.play();
-            long timeout = 5000;
+            long timeout = 4000;
             while (notification.isPlaying() && (timeout > 0)) {
                 timeout = timeout - 100;
                 try {
@@ -142,7 +142,9 @@ public class Notification extends CordovaPlugin {
                 } catch (InterruptedException e) {
                 }
             }
-        notification.stop();
+        }
+        else{
+            notification.stop();
         }
     }
 }
