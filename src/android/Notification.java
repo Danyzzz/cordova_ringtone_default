@@ -131,14 +131,17 @@ public class Notification extends CordovaPlugin {
         if (count == 1) {
             Uri ringtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
             Ringtone notification = RingtoneManager.getRingtone(this.cordova.getActivity().getBaseContext(), ringtone);
-           
-            notification.play();
-           
+            
+            if (notification.isPlaying())
+            {
+                notification.play();
+            }
+            else
+            {
+                notification.stop();
+            }
         }
-        else
-        {
-            notification.stop();
-        }
+        
 }
 
     /**
