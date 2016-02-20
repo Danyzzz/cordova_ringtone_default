@@ -134,7 +134,7 @@ public class Notification extends CordovaPlugin {
  
 
                 if (count == 1) { 
-                    ringtone.play();
+                    notification.play();
                 }
                 if (count == 2) {
                     
