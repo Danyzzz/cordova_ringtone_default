@@ -127,9 +127,9 @@ public class Notification extends CordovaPlugin {
      * @param count     Number of times to play notification
      */
     public void beep(final long count) {
-        
+           
                 Ringtone ringtone;
-                Uri ringtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+                ringtone = RingtoneManager.getRingtone(cordova.getActivity().getBaseContext(), Uri.parse(ringtone_uri));
 
                 if (count == 1) { 
                     ringtone.play();    
