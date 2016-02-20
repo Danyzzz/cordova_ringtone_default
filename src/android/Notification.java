@@ -127,7 +127,6 @@ public class Notification extends CordovaPlugin {
      * @param count     Number of times to play notification
      */
     public void beep(final long count) {
-        cordova.getThreadPool().execute(new Runnable() {
             public void run() {
                 
                 Uri ringtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
@@ -136,12 +135,10 @@ public class Notification extends CordovaPlugin {
                 if (count == 1) { 
                     notification.play();
                 }
-                else
-                {
+                if (count == 2) {
                     notification.stop();   
                 }
-            }
-        });
+            } 
     }
 
     /**
