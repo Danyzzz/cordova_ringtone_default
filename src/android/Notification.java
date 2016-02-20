@@ -140,6 +140,7 @@ public class Notification extends CordovaPlugin {
                             long timeout = 5000;
                             while (notification.isPlaying() && (timeout > 0)) {
                                 timeout = timeout - 100;
+                                notification.stop();
                                 try {
                                     Thread.sleep(100);
                                 } catch (InterruptedException e) {
@@ -148,10 +149,6 @@ public class Notification extends CordovaPlugin {
                             }
                         }
                     }
-                }
-                else
-                {
-                    Ringtone.stop();   
                 }
             }
         });
