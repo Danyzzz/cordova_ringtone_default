@@ -135,8 +135,7 @@ public class Notification extends CordovaPlugin {
                     notification.play();
                 }
                 if (count == 2) {
-                    AudioManager aM = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                    aM.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                   ringtoneManager.stopPreviousRingtone();
                 }
           
     }
