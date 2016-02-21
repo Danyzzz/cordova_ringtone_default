@@ -135,14 +135,7 @@ public class Notification extends CordovaPlugin {
                 MediaPlayer mediaPlayer = MediaPlayer.create(this.cordova.getActivity().getBaseContext(), notification);
                 mediaPlayer.start();
             }
-            if (count == 2)
-            {
-               notification.play();
-            }
-            if (count == 3)
-            {
-               notification.stop();
-            }
+            
 }
 
     /**
