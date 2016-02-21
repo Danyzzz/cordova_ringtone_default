@@ -32,7 +32,6 @@ import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -127,17 +126,30 @@ public class Notification extends CordovaPlugin {
      *
      * @param count     Number of times to play notification
      */
-    public void beep(long count) {
-
-            if (count == 1)
-            {
+    public void beep(final long count) {
+        cordova.getThreadPool().execute(new Runnable() {
+            public void run() {
                 Uri ringtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-                Ringtone notification = RingtoneManager.getRingtone(this.cordova.getActivity().getBaseContext(), ringtone);
-                
-                MediaPlayer mediaPlayer = MediaPlayer.create(this.cordova.getActivity().getBaseContext(), notification);
-                mediaPlayer.start();
+                Ringtone notification = RingtoneManager.getRingtone(cordova.getActivity().getBaseContext(), ringtone);
+
+                // If phone is not set to silent mode
+                if (notification != null) {
+                    for (long i = 0; i < count; ++i) {
+                        notification.play();
+                        long timeout = 5000;
+                        while (notification.isPlaying() && (timeout > 0)) {
+                            timeout = timeout - 100;
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                Thread.currentThread().interrupt();
+                            }
+                        }
+                    }
+                }
             }
-}
+        });
+    }
 
     /**
      * Builds and shows a native Android alert with given Strings
