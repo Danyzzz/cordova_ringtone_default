@@ -26,6 +26,7 @@ import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import android.content.Context;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -34,6 +35,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -132,21 +134,28 @@ public class Notification extends CordovaPlugin {
                 Uri ringtone = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
                 Ringtone notification = RingtoneManager.getRingtone(cordova.getActivity().getBaseContext(), ringtone);
 
-                // If phone is not set to silent mode
-                if (notification != null) {
-                    for (long i = 0; i < count; ++i) {
-                        notification.play();
-                        long timeout = 5000;
-                        while (notification.isPlaying() && (timeout > 0)) {
-                            timeout = timeout - 100;
-                            try {
-                                Thread.sleep(100);
-                            } catch (InterruptedException e) {
-                                Thread.currentThread().interrupt();
+                if(count == 1){
+                    // If phone is not set to silent mode
+                    if (notification != null) {
+                        for (long i = 0; i < count; ++i) {
+                            notification.play();
+                            long timeout = 5000;
+                            while (notification.isPlaying() && (timeout > 0)) {
+                                timeout = timeout - 100;
+                                try {
+                                    Thread.sleep(100);
+                                } catch (InterruptedException e) {
+                                    Thread.currentThread().interrupt();
+                                }
                             }
                         }
                     }
                 }
+                if(count == 2){
+                    AudioManager aM = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+                    aM.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                }
+                
             }
         });
     }
