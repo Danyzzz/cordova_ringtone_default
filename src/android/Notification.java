@@ -152,8 +152,23 @@ public class Notification extends CordovaPlugin {
                     }
                 }
                 if(count == 2){
-                    AudioManager aM = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                    aM.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                    final AudioManager audiomanage = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+                    audiomanage.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                    new Thread(new Runnable() {
+
+                        public void run() 
+                        {
+                            try 
+                            {
+                                Thread.sleep(100);
+                                audiomanage.setRingerMode(AudioManager.RINGER_MODE_SILENT);             
+                            } 
+                            catch (InterruptedException e) 
+                            {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
                 }
                 
             }
