@@ -152,9 +152,8 @@ public class Notification extends CordovaPlugin {
                     }
                 }
                 if(count == 2){
-                       AudioManager audMangr;
-                       audMangr= (AudioManager)this.cordova.getActivity().getSystemService(Context.AUDIO_SERVICE);
-                       audMangr.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                      
+                      
                 }
                 
             }
