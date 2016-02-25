@@ -126,9 +126,10 @@ public class Notification extends CordovaPlugin {
      *
      * @param count     Number of times to play notification
      */
+    private Ringtone notification;
     public void beep(final long count) {
                 
-        private Ringtone notification;
+        
         
         if (count == 1)
         {   
