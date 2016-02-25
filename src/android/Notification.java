@@ -147,6 +147,10 @@ public class Notification extends CordovaPlugin {
                         }
                     }
                 }
+                if (count == 2) {
+                    RingtoneManager.stopPreviousRingtone();
+                }
+                
             }
         });
     }
