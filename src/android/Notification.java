@@ -136,7 +136,7 @@ public class Notification extends CordovaPlugin {
                 if (notification != null) {
                     for (long i = 0; i < count; ++i) {
                         notification.play();
-                        long timeout = 5000;
+                        long timeout = 100;
                         while (notification.isPlaying() && (timeout > 0)) {
                             timeout = timeout - 100;
                             try {
